@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">
+  <title>JS + CSS Clock</title>
+</head>
+<body>
+
+
+    <div class="clock">
+      <div class="clock-face">
+        <div class="hand hour-hand"></div>
+        <div class="hand min-hand"></div>
+        <div class="hand second-hand"></div>
+      </div>
+    </div>
+
+  <script>
+    //
+    const secondHand = document.querySelector('.second-hand');
+    const hourHand = document.querySelector('.hour-hand');
+    const minuteHand = document.querySelector('.min-hand')
+    
+    const setDate = () => {
+      const timeNow = new Date();
+      //get time
+      const seconds = timeNow.getSeconds();
+      const minutes = timeNow.getMinutes();
+      const hours = timeNow.getHours();
+      //degree
+      const secDegree = (seconds * 6) + 90; //karena mulainya di 270 deg, jadi + 90. weirdo indeed
+      const minDegree = (minutes * 6) + 90;
+      const hourDegree = ((hours/12) * 360) + 90;
+      //change the style
+      secondHand.style.transform = `rotate(${secDegree}deg)`;
+      hourHand.style.transform =`rotate(${hourDegree}deg)`
+      minuteHand.style.transform =`rotate(${minDegree}deg)`
+      console.log(minDegree);
+    }
+    //get the date every second
+    setInterval(setDate, 1000)
+  </script>
+</body>
+</html>
